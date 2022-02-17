@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Navbar,
-  NavDropdown,
-  Nav,
-  Container,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 const Header = () => {
   return (
@@ -19,7 +12,9 @@ const Header = () => {
         collapseOnSelect
         className='px-5'
       >
-        <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
+        <LinkContainer to='/'>
+        <Navbar.Brand >React-Bootstrap</Navbar.Brand>
+        </LinkContainer>
 
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
@@ -33,8 +28,16 @@ const Header = () => {
             <Button variant='outline-success'>Search</Button>
           </Form>
           <Nav style={{ marginLeft: "auto" }}>
-            <Nav.Link href='/cart'><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
-            <Nav.Link href='/LogIn'><i className="fas fa-user"></i>Sing In</Nav.Link>
+            <LinkContainer to='/cart'>
+            <Nav.Link >
+              <i className='fas fa-shopping-cart'></i>Cart
+            </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to='/login'>
+            <Nav.Link href='/LogIn'>
+              <i className='fas fa-user'></i>Sing In
+            </Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
