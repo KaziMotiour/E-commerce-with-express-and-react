@@ -1,9 +1,13 @@
 import express from 'express'
-import products from './data/products.js'
 import dotenv from 'dotenv'
+import connectDB from './config/db.js'
+import colors from 'colors'
+
+import router from './routes/productRouts.js'
 const app = express()
 
 dotenv.config()
+connectDB()
 
 app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -12,18 +16,14 @@ app.all('*', function(req, res, next) {
     next();
   });
 
+app.use('/api/porducts', router) 
+
 app.get('/', (req, res)=>{
     res.send('API is running....')
 })
-app.get('/api/porducts', (req, res)=>{
-    res.json(products)
-})
 
-app.get('/api/porducts/:id', (req, res)=>{
-    const product = products.find((p)=>p._id=== req.params.id)
-    res.json(product)
-})
+
 
 const port = process.env.port || 5000
-app.listen(port, console.log(`server running in ${process.env.NODE_ENV} mode on port 5000`))
+app.listen(port, console.log(`server running in ${process.env.NODE_ENV} mode on port ${port}`.yellow.bold))
 

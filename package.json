@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "MERN Shopping cart app",
   "main": "server.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node proshop-backend/server",
     "server": "nodemon proshop-backend/server",
     "client": "npm start --prefix proshop-frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node proshop-backend/seeder",
+    "data:destroy": "node proshop-backend/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -22,8 +24,12 @@
   },
   "homepage": "https://github.com/KaziMotiour/E-commerce-with-express-and-react#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.2.2"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
