@@ -4,26 +4,34 @@ import {Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap'
 import Rating from '../components/Rating'
 // import products from '../products'
 import axios from 'axios'
-
+import { detailProduct } from "../actions/productActions";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 
 const ProductScreen = () => {
     const {id} = useParams()
+    const dispatch = useDispatch();
     // const product = products.find(p => p._id===id)
-    const [product, setProduct]=useState()
+    const productDetail = useSelector((state) => state.productDetail);
+    const {loading, error, product} = productDetail
     useEffect(()=>{
 
-        const fetchProduct = async () => {
-          const {data} = await axios.get(`http://127.0.0.1:5000/api/porducts/${id}`)
-          console.log(data, 'dataa');
-          setProduct(data)
-        }
-        fetchProduct()
+        dispatch(detailProduct(id))
       }, [id])
 
   return (
     <>
     <Link className='btn btn-dark my-3' to='/'>Go Back</Link>
+    {loading && loading ? (
+        <h2><Loader /></h2>
+      ) : error ? 
+      <div>
+        {error}
+        <Message varient='danger'>{error}</Message>
+        </div>
+       : (
     <Row>
         <Col md={6}>
             <Image src={product && product.image} alt={product && product.name} fluid/>
@@ -76,7 +84,7 @@ const ProductScreen = () => {
                 </ListGroup>
             </Card>
         </Col>
-    </Row>
+    </Row>)}
     </>
   )
 }
