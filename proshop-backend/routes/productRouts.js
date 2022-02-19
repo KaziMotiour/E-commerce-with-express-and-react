@@ -8,7 +8,7 @@ import asyncHandler from 'express-async-handler'
 //@access Public
 router.get('/', asyncHandler(async(req, res)=>{
     
-    const products = await Porduct.find({})
+    const products = await Porduct.find({ })
     res.json(products) 
 
 }))
