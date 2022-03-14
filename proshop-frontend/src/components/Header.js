@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 const Header = () => {
@@ -12,9 +12,9 @@ const Header = () => {
         collapseOnSelect
         className='px-5'
       >
-        <LinkContainer to='/'>
+        <Link to='/'>
         <Navbar.Brand >React-Bootstrap</Navbar.Brand>
-        </LinkContainer>
+        </Link>
 
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
@@ -28,16 +28,16 @@ const Header = () => {
             <Button variant='outline-success'>Search</Button>
           </Form>
           <Nav style={{ marginLeft: "auto" }}>
-            <LinkContainer to='/cart'>
-            <Nav.Link >
+            <Link to='/cart'>
+            <Nav.Link href='/cart'>
               <i className='fas fa-shopping-cart'></i>Cart
             </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to='/login'>
+            </Link>
+            <Link to='/login'>
             <Nav.Link href='/LogIn'>
               <i className='fas fa-user'></i>Sing In
             </Nav.Link>
-            </LinkContainer>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
