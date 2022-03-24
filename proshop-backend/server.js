@@ -3,12 +3,16 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import colors from 'colors'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
+import productRouter from './routes/productRouts.js'
+import userRouter from './routes/userRouts.js'
 
-import router from './routes/productRouts.js'
 const app = express()
 
 dotenv.config()
 connectDB()
+
+app.use(express.json())
+
 
 app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -17,7 +21,9 @@ app.all('*', function(req, res, next) {
     next();
   });
 
-app.use('/api/porducts', router) 
+
+app.use('/api/porducts', productRouter)
+app.use('/api/users', userRouter)  
 
 app.use(notFound,errorHandler )
 
